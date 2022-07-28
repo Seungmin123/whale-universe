@@ -37,4 +37,6 @@ dependencies {
     //인메모리 관계형 데이터베이스
     //메모리에 실행되기 때문에 어플리케이션을 재시작할 때마다 초기화됨.
     implementation('com.h2database:h2')
+    //머스태치
+    implementation('org.springframework.boot:spring-boot-starter-mustache')
 }
