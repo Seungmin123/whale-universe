@@ -1,4 +1,4 @@
-package com.whalee.springboot.web;
+package com.whalee.practice.springboot.web;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

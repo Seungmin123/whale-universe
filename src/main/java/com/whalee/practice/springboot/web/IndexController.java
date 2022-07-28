@@ -1,6 +1,6 @@
-package com.whalee.springboot.web;
+package com.whalee.practice.springboot.web;
 
-import com.whalee.springboot.web.dto.IndexResponseDto;
+import com.whalee.practice.springboot.web.dto.IndexResponseDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

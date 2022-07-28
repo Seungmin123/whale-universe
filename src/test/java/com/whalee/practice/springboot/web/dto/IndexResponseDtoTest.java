@@ -1,4 +1,4 @@
-package com.whalee.springboot.web.dto;
+package com.whalee.practice.springboot.web.dto;
 
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;

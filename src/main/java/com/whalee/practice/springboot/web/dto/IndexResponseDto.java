@@ -1,4 +1,4 @@
-package com.whalee.springboot.web.dto;
+package com.whalee.practice.springboot.web.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
