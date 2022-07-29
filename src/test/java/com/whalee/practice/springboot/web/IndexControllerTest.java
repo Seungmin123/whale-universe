@@ -40,6 +40,8 @@ public class IndexControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(hello));
     }
+    
+    // 사용자 인증정보 추가
     @WithMockUser(roles="USER")
     @Test
     public void return_indexDto() throws Exception{
