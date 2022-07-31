@@ -1,6 +1,7 @@
-package com.whalee.practice.springboot.web;
+package com.whalee.springboot.web;
 
 import com.whalee.springboot.config.auth.SecurityConfig;
+import com.whalee.springboot.web.HelloController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(controllers = IndexController.class,
+@WebMvcTest(controllers = HelloController.class,
     excludeFilters = {
         @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE
             , classes = SecurityConfig.class)
@@ -25,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 // 대상 @ControllerAdvice, @Controller
 // 비대상 @Repository, @Service, @Component
 // 스캔 대상에서 SecurityConfig를 지웠음; 언제 삭제될지 모르니 사용안하는걸 추천
-public class IndexControllerTest {
+public class HelloControllerTest {
 
     @Autowired
     private MockMvc mvc;
@@ -33,10 +34,10 @@ public class IndexControllerTest {
     // 사용자 인증정보 추가
     @WithMockUser(roles="USER")
     @Test
-    public void return_index() throws Exception{
+    public void return_hello() throws Exception{
         String hello = "nice to meet you. it's index page";
 
-        mvc.perform(get("/index"))
+        mvc.perform(get("/hello"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(hello));
     }
@@ -44,12 +45,12 @@ public class IndexControllerTest {
     // 사용자 인증정보 추가
     @WithMockUser(roles="USER")
     @Test
-    public void return_indexDto() throws Exception{
+    public void return_helloDto() throws Exception{
         String name = "whalee";
         int amount = 1000;
 
         mvc.perform(
-                get("/index/dto")
+                get("/hello/dto")
                     .param("name", name)
                     .param("amount", String.valueOf(amount)))
                 .andExpect(status().isOk())

@@ -1,9 +1,10 @@
-package com.whalee.practice.springboot.web.dto;
+package com.whalee.springboot.web.dto;
 
+import com.whalee.springboot.web.dto.HelloResponseDto;
 import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class IndexResponseDtoTest {
+public class HelloResponseDtoTest {
 
     @Test
     public void lombok_func_test(){
@@ -12,7 +13,7 @@ public class IndexResponseDtoTest {
         int amount = 1000;
 
         //when
-        IndexResponseDto dto = new IndexResponseDto(name, amount);
+        HelloResponseDto dto = new HelloResponseDto(name, amount);
 
         //then
         assertThat(dto.getName()).isEqualTo(name);

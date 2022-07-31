@@ -1,22 +1,22 @@
-package com.whalee.practice.springboot.web;
+package com.whalee.springboot.web;
 
-import com.whalee.practice.springboot.web.dto.IndexResponseDto;
+import com.whalee.springboot.web.dto.HelloResponseDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class IndexController {
+public class HelloController {
 
-    @GetMapping("/index")
+    @GetMapping("/hello")
     public String goIndexPage(){
         return "nice to meet you. it's index page";
     }
 
-    @GetMapping("/index/dto")
-    public IndexResponseDto indexDto(@RequestParam("name") String name,
+    @GetMapping("/hello/dto")
+    public HelloResponseDto indexDto(@RequestParam("name") String name,
                                      @RequestParam("amount") int amount){
-        return new IndexResponseDto(name, amount);
+        return new HelloResponseDto(name, amount);
     }
 
 }
