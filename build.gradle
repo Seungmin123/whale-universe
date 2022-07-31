@@ -45,4 +45,6 @@ dependencies {
     //DB 세션 관리를 위한 의존성
     // 현재 로컬에서 돌리면 H2 기반이기 때문에 똑같이 풀리는데, AWS로 서버 전환하면 RDS를 사용할거니까 문제 없음.
     implementation('org.springframework.session:spring-session-jdbc')
+    //maria DB 드라이버
+    implementation('org.mariadb.jdbc:mariadb-java-client')
 }
