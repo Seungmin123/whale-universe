@@ -39,7 +39,7 @@ deploy:
     key: whale-universe-webservice.zip # 빌드 파일을 압축해서 전달
     bundle_type: zip # 압축 확장자
     application: whale-universe-webservice # 웹 콘솔에서 등록한 codeDeploy 애플리케이션
-    deployment_group: whale-universe-webservicec-group # 웹 콘솔에서 등록한 codedeploy 배포 그룹
+    deployment_group: whale-universe-webservice-group # 웹 콘솔에서 등록한 codedeploy 배포 그룹
     region: ap-northeast-2
     wait-until-deployed: true
 
