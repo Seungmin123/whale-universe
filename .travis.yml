@@ -11,9 +11,26 @@ cache:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
 
+# gradlew permission
 before_install:
   - chmod +x gradlew
 script: "./gradlew clean build"
+
+before_deploy:
+  - zip -r whale-universe *
+  - mkdir -p deploy
+  - mv whale-universe.zip deploy/whale-universe.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
+    secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
+    bucket: whale-universe # S3 버킷
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private # zip 파일 접근을 private로
+    local_dir: deploy # before_deploy에서 생성한 디렉토리
+    wait-until-deployed: true
 
 # CI 실행 완료 시 이메일로 알람
 notifications:
