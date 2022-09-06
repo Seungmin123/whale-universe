@@ -1,7 +1,7 @@
 package com.whalee.universe.service.order;
 
-import com.htbeyond.pretask.domain.order.Orders;
-import com.htbeyond.pretask.domain.order.OrdersRepository;
+import com.whalee.universe.domain.order.Orders;
+import com.whalee.universe.domain.order.OrdersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,7 +1,7 @@
 package com.whalee.universe.service.user;
 
-import com.htbeyond.pretask.domain.user.Member;
-import com.htbeyond.pretask.domain.user.MemberRepository;
+import com.whalee.universe.domain.user.Member;
+import com.whalee.universe.domain.user.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

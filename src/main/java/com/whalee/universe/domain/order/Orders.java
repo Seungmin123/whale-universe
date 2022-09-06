@@ -1,7 +1,7 @@
 package com.whalee.universe.domain.order;
 
-import com.htbeyond.pretask.domain.BaseTimeEntity;
-import com.htbeyond.pretask.domain.user.Member;
+import com.whalee.universe.domain.BaseTimeEntity;
+import com.whalee.universe.domain.user.Member;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

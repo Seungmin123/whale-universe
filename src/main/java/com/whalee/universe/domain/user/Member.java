@@ -1,7 +1,7 @@
 package com.whalee.universe.domain.user;
 
-import com.htbeyond.pretask.domain.BaseTimeEntity;
-import com.htbeyond.pretask.domain.user.dto.MemberFormDto;
+import com.whalee.universe.domain.BaseTimeEntity;
+import com.whalee.universe.domain.user.dto.MemberFormDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

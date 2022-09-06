@@ -1,6 +1,6 @@
 package com.whalee.universe.config.auth;
 
-import com.htbeyond.pretask.domain.user.MemberRepository;
+import com.whalee.universe.domain.user.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;

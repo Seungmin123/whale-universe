@@ -2,42 +2,11 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Login - SB Admin</title>
-        <link href="../css/styles.css" rel="stylesheet" />
-
-    </head>
+    <%@ include file="/WEB-INF/jsp/board/header.jsp" %>
     <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <!-- Navbar Brand-->
-            <p class="navbar-brand ps-3">HTBeyond</p>
-            <form action="/api/user/logout" method="post" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input type="submit" class="btn btn-primary" id="logOutBtn" value="LogOut" />
-                </div>
-            </form>
-        </nav>
+        <%@ include file="/WEB-INF/jsp/board/topBar.jsp" %>
         <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <a class="nav-link" href="/user/mypage">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                My Detail Info
-                            </a>
-                            <a class="nav-link" href="/board/myOrder">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                My Order List
-                            </a>
-                            <a class="nav-link" href="/board/otherOrder">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Other Order List
-                            </a>
-                        </div>
-                    </div>
-                </nav>
-            </div>
+            <%@ include file="/WEB-INF/jsp/board/sideBar.jsp" %>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
@@ -85,18 +54,7 @@
                         </div>
                     </div>
                 </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2022</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+                <%@ include file="/WEB-INF/jsp/board/footer.jsp" %>
             </div>
         </div>
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>

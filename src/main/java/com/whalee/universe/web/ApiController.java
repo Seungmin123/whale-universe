@@ -1,11 +1,11 @@
 package com.whalee.universe.web;
 
-import com.htbeyond.pretask.domain.order.Orders;
-import com.htbeyond.pretask.domain.user.Member;
-import com.htbeyond.pretask.domain.user.dto.MemberFormDto;
-import com.htbeyond.pretask.domain.util.Paging;
-import com.htbeyond.pretask.service.order.OrdersService;
-import com.htbeyond.pretask.service.user.MemberService;
+import com.whalee.universe.domain.order.Orders;
+import com.whalee.universe.domain.user.Member;
+import com.whalee.universe.domain.user.dto.MemberFormDto;
+import com.whalee.universe.domain.util.Paging;
+import com.whalee.universe.service.order.OrdersService;
+import com.whalee.universe.service.user.MemberService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -31,30 +31,6 @@ import java.util.List;
 public class ApiController {
 
     private final OrdersService ordersService;
-    private final MemberService memberService;
-    private final PasswordEncoder passwordEncoder;
-
-    @ApiOperation(value="회원가입 API", notes="정해진 유효성 검사 후 통과 시 DB에 Member 정보를 등록하고 페이지 redirect")
-    @ApiResponses({
-            @ApiResponse(code = 200, message = "API 정상 작동"),
-            @ApiResponse(code = 500, message = "서버 에러")
-    })
-    @PostMapping("/api/user/register")
-    public String memberForm(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors()){
-            return "/user/register";
-        }
-
-        try{
-            Member member = Member.createMember(memberFormDto, passwordEncoder);
-            memberService.saveMember(member);
-        }catch (IllegalStateException e){
-            model.addAttribute("errorMessage", e.getMessage());
-            return "/user/register";
-        }
-
-        return "redirect:/";
-    }
 
     @ApiOperation(value="로그인한 유저의 정보 API", notes="현재 로그인한 유저의 정보")
     @ApiResponses({

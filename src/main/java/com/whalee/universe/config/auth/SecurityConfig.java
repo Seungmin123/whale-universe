@@ -1,6 +1,6 @@
 package com.whalee.universe.config.auth;
 
-import com.htbeyond.pretask.service.user.MemberService;
+import com.whalee.universe.service.user.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .headers().frameOptions().disable()
                 .and()
                     .authorizeRequests() // 요청 URL에 따라 접근 권한 설정
-                    .antMatchers("/", "/user/**", "/swagger-resources/**", "/swagger-ui/**").permitAll() // 해당 경로들 접근 허용
+                    .antMatchers("/", "/user/**","/api/user/**", "/swagger-resources/**", "/swagger-ui/**").permitAll() // 해당 경로들 접근 허용
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()// 로그인 폼은
