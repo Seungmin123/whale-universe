@@ -20,6 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final MemberService memberService;
     private final AuthSuccessHandler authSuccessHandler;
     private final AuthFailureHandler authFailureHandler;
+    private final CustomOAuth2UserService customOAuth2UserService;
 
     @Bean
     public BCryptPasswordEncoder encryptPassword() {
@@ -64,10 +65,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .deleteCookies("JSESSIONID")
                     .permitAll()
                 .and()
-                    .sessionManagement()
-                    .maximumSessions(1)// 최대 세션 1
-                    .maxSessionsPreventsLogin(false) // 중복 로그인 시 이전 세션 삭제
-                    .expiredUrl("/loginError");
+                    .oauth2Login()
+                    .userInfoEndpoint()
+                    .userService(customOAuth2UserService);
+//                .and()
+//                    .sessionManagement()
+//                    .maximumSessions(1)// 최대 세션 1
+//                    .maxSessionsPreventsLogin(false) // 중복 로그인 시 이전 세션 삭제
+//                    .expiredUrl("/loginError");
     }
 
 

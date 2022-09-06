@@ -42,23 +42,29 @@ public class Member extends BaseTimeEntity implements UserDetails {
     @Column
     private String gender;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
     @Builder
-    public Member(String name, String nickName, String password, String tell, String email, String gender){
+    public Member(String name, String nickName, String password, String tell, String email, String gender, Role role){
         this.name = name;
         this.nickName = nickName;
         this.password = password;
         this.tell = tell;
         this.email = email;
         this.gender = gender;
+        this.role = role;
     }
 
     @Builder
-    public Member(String name, String nickName, String password, String tell, String email){
+    public Member(String name, String nickName, String password, String tell, String email, Role role){
         this.name = name;
         this.nickName = nickName;
         this.password = password;
         this.tell = tell;
         this.email = email;
+        this.role = role;
     }
 
     public static Member createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder){
@@ -69,6 +75,7 @@ public class Member extends BaseTimeEntity implements UserDetails {
                 .tell(memberFormDto.getTell())
                 .email(memberFormDto.getEmail())
                 .gender(memberFormDto.getGender())
+                .role(Role.USER)
                 .build();
 
         return member;
@@ -111,5 +118,9 @@ public class Member extends BaseTimeEntity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getRoleKey() {
+        return this.role.getKey();
     }
 }

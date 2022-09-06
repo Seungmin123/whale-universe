@@ -1,5 +1,6 @@
 package com.whalee.universe.domain.user.dto;
 
+import com.whalee.universe.domain.user.Role;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
