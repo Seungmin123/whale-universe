@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Whale universe</title>
+</head>
+<body>
+    <div>
+        loginPage("/")
+        .usernameParameter("username")
+        .passwordParameter("password")
+        .loginProcessingUrl("/api/user/login/action")
+
+        <form id="frm" onsubmit="return false;" method="post">
+            <div id="loginDiv">
+                <input type="text" id="username" name="username" placeholder="ID를 입력해주세요.">
+                <input type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요.">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
