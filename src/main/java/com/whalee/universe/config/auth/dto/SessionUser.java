@@ -11,11 +11,13 @@ public class SessionUser implements Serializable {
     // @OneToMany, @ManyToMany 등 자식 엔티티를 갖는다면 성능 이슈, 부수 효과 확률 높음
     // 그럴바엔 직렬화 기능을 가진 세션 Dto를 하나 추가로 만드는게 나음.
     private String name;
-    private String email;
+    private String nickName;
+    //private String email;
 
     public SessionUser(Member member){
         this.name = member.getName();
-        this.email = member.getEmail();
+        this.nickName = member.getNickName();
+        //this.email = member.getEmail();
     }
 
 }

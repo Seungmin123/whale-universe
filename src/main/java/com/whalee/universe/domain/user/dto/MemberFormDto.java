@@ -29,7 +29,7 @@ public class MemberFormDto{
             message = "비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 10자 ~ 20자의 문자여야 합니다.")
     private String password;
 
-    @NotBlank(message = "전화번호는 필수 입력 값입니다.")
+    /*@NotBlank(message = "전화번호는 필수 입력 값입니다.")
     @Pattern(regexp="[0-9].{1,20}",
             message = "전화번호는 숫자로만 이루어진 20자 이하의 문자여야 합니다.")
     private String tell;
@@ -39,25 +39,13 @@ public class MemberFormDto{
     @Email(message = "이메일 형식으로 입력해주세요.")
     private String email;
 
-    private String gender;
+    private String gender;*/
 
     @Builder
-    public MemberFormDto(String name, String nickName, String password, String tell, String email, String gender){
+    public MemberFormDto(String name, String nickName, String password){
         this.name = name;
         this.nickName = nickName;
         this.password = password;
-        this.tell = tell;
-        this.email = email;
-        this.gender = gender;
-    }
-
-    @Builder
-    public MemberFormDto(String name, String nickName, String password, String tell, String email){
-        this.name = name;
-        this.nickName = nickName;
-        this.password = password;
-        this.tell = tell;
-        this.email = email;
     }
 
 }
