@@ -1,0 +1,90 @@
+<html lang="ko"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:include="fragments/header"></th:block>
+<body class="sb-nav-fixed">
+    <th:block th:include="fragments/topBar"></th:block>
+    <div id="layoutSidenav">
+        <th:block th:include="fragments/sideBar"></th:block>
+        <div id="app">
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">My Detail Info</h1></br>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Name</li>
+                </ol>
+                <div class="card mb-4">
+                    <div class="card-body" >
+                        <p id ="myName"></p>
+                    </div>
+                </div>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">NickName</li>
+                </ol>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <p id ="myNickName"></p>
+                    </div>
+                </div>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Password</li>
+                </ol>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <p id ="myPassword"></p>
+                    </div>
+                </div>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item" >Tell</li>
+                </ol>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <p id ="myTell"></p>
+                    </div>
+                </div>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Email</li>
+                </ol>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <p id ="myEmail"></p>
+                    </div>
+                </div>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Gender</li>
+                </ol>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <p id ="myGender"></p>
+                    </div>
+                </div>
+
+            </div>
+            <th:block th:include="fragments/footer"></th:block>
+        </div>
+    </div>
+<script th:inline="javascript">
+    function initialState(){
+        return {
+            pageList:{
+                totalCount: 0,
+                page: 0,
+                limit: 0,
+                items: []
+            }
+        }
+    }
+
+    var app = new Vue({
+        el: '#app'
+        , created: function(){
+        }
+        , data: function() {
+            return initialState()
+        }
+        , methods: {
+
+        }
+    })
+</script>
+</body>
+</html>
