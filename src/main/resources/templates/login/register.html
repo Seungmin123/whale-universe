@@ -13,24 +13,24 @@
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
                             <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
                             <div class="card-body">
-                                <form:form action="/api/user/register" method="post" modelAttribute="memberFormDto">
+                                <div>
                                     <div class="form-floating mb-3">
-                                        <form:input class="form-control" path="name" id="name" name="name" type="text" placeholder="Name"
+                                        <input class="form-control" id="name" name="name" type="text" placeholder="Name"
                                             v-model="registerInfo.name"/>
                                         <label for="name">Name</label>
-                                        <p style="color:red"><form:errors path="name"/></p>
+                                        <p style="color:red">{{errorInfo.name}}</p>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <form:input class="form-control" path="nickName" id="nickName" name="nickName" type="text" placeholder="NickName"
+                                        <input class="form-control" id="nickName" name="nickName" type="text" placeholder="NickName"
                                             v-model="registerInfo.nickName"/>
                                         <label for="nickName">NickName</label>
-                                        <p style="color:red"><form:errors path="nickName"/></p>
+                                        <p style="color:red">{{errorInfo.nickName}}</p>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <form:input class="form-control" path="password" id="password" name="password" type="password" placeholder="Password"
+                                        <input class="form-control" id="password" name="password" type="password" placeholder="Password"
                                             v-model="registerInfo.password"/>
                                         <label for="password">password</label>
-                                        <p style="color:red"><form:errors path="password"/></p>
+                                        <p style="color:red">{{errorInfo.password}}</p>
                                     </div>
                                     <!--<div class="form-floating mb-3">
                                         <form:input class="form-control" path="tell" id="tell" name="tell" type="text" placeholder="Tell" />
@@ -48,11 +48,10 @@
                                     </div>-->
                                     <div class="mt-4 mb-0">
                                         <div class="d-grid">
-                                            <input type="submit" id="registerBtn" class="btn btn-primary btn-block" value="Create Account" />
-                                            <button class="btn btn-primary btn-block" value="Create Account" @click="registerBtn">Create Account With Vue</button>
+                                            <button class="btn btn-primary btn-block" @click="registerBtn">Create Account</button>
                                         </div>
                                     </div>
-                                </form:form>
+                                </div>
                             </div>
                             <div class="card-footer text-center py-3">
                                 <div class="small"><a href="/">Go to login</a></div>
@@ -64,8 +63,6 @@
         </main>
     </div>
 </div>
-</body>
-<script src="../js/login/login.js"></script>
 <script th:inline="javascript">
     function initialState() {
         return {
@@ -73,23 +70,23 @@
                 name: '',
                 nickName: '',
                 password: ''
-            }
+            }, errorInfo: {}
         }
     }
 
     var app = new Vue({
-        el: '#layoutAuthentication_content'
+        el: '#layoutAuthentication'
         , created: function() {
         }
         , data: initialState()
         , method: {
             registerBtn: async function() {
                 let registerState = await axios.post('/api/user/register', app.registerInfo)
-                console.log(registerState)
+                //console.log(registerState)
             }
         }
     })
-
 </script>
+</body>
 <th:block th:include="fragments/footer"></th:block>
 </html>
