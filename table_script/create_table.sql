@@ -29,12 +29,12 @@ create table member (
 	member_id bigint not null auto_increment,
 	created_date datetime(6),
 	modified_date datetime(6),
-	email varchar(255) not null,
+	email varchar(255),
 	gender varchar(255),
 	name varchar(255) not null,
 	nick_name varchar(255) not null,
 	password varchar(1000) not null,
-	tell varchar(255) not null,
+	tell varchar(255),
 	role varchar(255) not null,
 	primary key (member_id)
 ) engine=InnoDB

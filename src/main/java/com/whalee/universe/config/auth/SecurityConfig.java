@@ -63,11 +63,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .logoutSuccessUrl("/")
                     .invalidateHttpSession(true) // 인증정보 지우고 세션 무효화
                     .deleteCookies("JSESSIONID")
-                    .permitAll()
-                .and()
-                    .oauth2Login()
-                    .userInfoEndpoint()
-                    .userService(customOAuth2UserService);
+                    .permitAll();
+//                .and()
+//                    .oauth2Login()
+//                    .userInfoEndpoint()
+//                    .userService(customOAuth2UserService);
 //                .and()
 //                    .sessionManagement()
 //                    .maximumSessions(1)// 최대 세션 1

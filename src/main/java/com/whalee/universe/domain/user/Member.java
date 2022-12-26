@@ -33,37 +33,24 @@ public class Member extends BaseTimeEntity implements UserDetails {
     @Column(nullable = false, length = 1000)
     private String password;
 
-    @Column(nullable = false)
+    /*@Column(nullable = false)
     private String tell;
 
     @Column(nullable = false)
     private String email;
 
     @Column
-    private String gender;
+    private String gender;*/
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
 
     @Builder
-    public Member(String name, String nickName, String password, String tell, String email, String gender, Role role){
+    public Member(String name, String nickName, String password, Role role){
         this.name = name;
         this.nickName = nickName;
         this.password = password;
-        this.tell = tell;
-        this.email = email;
-        this.gender = gender;
-        this.role = role;
-    }
-
-    @Builder
-    public Member(String name, String nickName, String password, String tell, String email, Role role){
-        this.name = name;
-        this.nickName = nickName;
-        this.password = password;
-        this.tell = tell;
-        this.email = email;
         this.role = role;
     }
 
@@ -72,9 +59,6 @@ public class Member extends BaseTimeEntity implements UserDetails {
                 .name(memberFormDto.getName())
                 .nickName(memberFormDto.getNickName())
                 .password(passwordEncoder.encode(memberFormDto.getPassword()))
-                .tell(memberFormDto.getTell())
-                .email(memberFormDto.getEmail())
-                .gender(memberFormDto.getGender())
                 .role(Role.USER)
                 .build();
 
