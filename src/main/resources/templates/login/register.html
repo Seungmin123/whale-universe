@@ -82,7 +82,7 @@
         , method: {
             registerBtn: async function() {
                 let registerState = await axios.post('/api/user/register', app.registerInfo)
-                //console.log(registerState)
+                console.log(registerState)
             }
         }
     })
