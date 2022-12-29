@@ -78,11 +78,16 @@
         el: '#layoutAuthentication'
         , created: function() {
         }
-        , data: initialState()
-        , method: {
+        , data: function(){
+            return initialState()
+        }
+        , methods: {
             registerBtn: async function() {
                 let registerState = await axios.post('/api/user/register', app.registerInfo)
+
                 console.log(registerState)
+
+                if(registerState.status === 200) window.alert("성공")
             }
         }
     })
