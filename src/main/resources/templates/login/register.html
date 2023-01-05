@@ -85,9 +85,8 @@
             registerBtn: async function() {
                 let registerState = await axios.post('/api/user/register', app.registerInfo)
 
-                console.log(registerState)
-
-                if(registerState.status === 200) window.alert("성공")
+                // TODO 주소 바꿔야됨 + 에러 처리 필요
+                if(registerState.status === 200) location.href = "http://localhost:8080" + registerState.data
             }
         }
     })

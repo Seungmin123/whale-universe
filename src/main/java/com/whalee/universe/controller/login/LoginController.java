@@ -1,4 +1,4 @@
-package com.whalee.universe.controller.api.login;
+package com.whalee.universe.controller.login;
 
 import com.whalee.universe.domain.user.Member;
 import com.whalee.universe.domain.user.dto.MemberFormDto;
@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +23,7 @@ public class LoginController {
     private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
-    public String registerMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model){
+    public String registerMember(@RequestBody @Valid MemberFormDto memberFormDto, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "/user/register";
         }
@@ -31,10 +32,9 @@ public class LoginController {
             Member member = Member.createMember(memberFormDto, passwordEncoder);
             memberService.saveMember(member);
         }catch (IllegalStateException e){
-            model.addAttribute("errorMessage", e.getMessage());
-            return "/user/register";
+            return e.getMessage();
         }
 
-        return "redirect:/";
+        return "/";
     }
 }
