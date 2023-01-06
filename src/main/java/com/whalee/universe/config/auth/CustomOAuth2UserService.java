@@ -2,8 +2,8 @@ package com.whalee.universe.config.auth;
 
 import com.whalee.universe.config.auth.dto.OAuthAttributes;
 import com.whalee.universe.config.auth.dto.SessionUser;
-import com.whalee.universe.domain.user.Member;
-import com.whalee.universe.domain.user.MemberRepository;
+import com.whalee.universe.domain.member.Member;
+import com.whalee.universe.domain.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;

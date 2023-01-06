@@ -1,12 +1,9 @@
-package com.whalee.universe.domain.user.dto;
+package com.whalee.universe.domain.member.dto;
 
-import com.whalee.universe.domain.user.Role;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 

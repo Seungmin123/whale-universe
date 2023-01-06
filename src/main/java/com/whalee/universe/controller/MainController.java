@@ -1,6 +1,6 @@
 package com.whalee.universe.controller;
 
-import com.whalee.universe.domain.user.dto.MemberFormDto;
+import com.whalee.universe.domain.member.dto.MemberFormDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.authentication.AuthenticationTrustResolverImpl;
