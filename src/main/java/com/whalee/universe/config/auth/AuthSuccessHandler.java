@@ -1,5 +1,6 @@
 package com.whalee.universe.config.auth;
 
+import com.whalee.universe.common.enums.urls.URLCode;
 import com.whalee.universe.domain.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -19,7 +20,7 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException{
-        setDefaultTargetUrl("/user/mypage");
+        setDefaultTargetUrl(URLCode.MEMBER_DETAIL.getUrl());
 
         super.onAuthenticationSuccess(request, response, authentication);
     }

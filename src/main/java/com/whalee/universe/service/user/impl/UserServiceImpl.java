@@ -1,12 +1,11 @@
-package com.whalee.universe.service.member.impl;
+package com.whalee.universe.service.user.impl;
 
 import com.whalee.universe.common.exception.ExceptionCode;
 import com.whalee.universe.domain.member.Member;
 import com.whalee.universe.domain.member.MemberRepository;
-import com.whalee.universe.service.member.MemberService;
+import com.whalee.universe.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,7 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 @Transactional
 @Service
-public class MemberServiceImpl implements MemberService, UserDetailsService {
+public class UserServiceImpl implements UserService {
 
     private final MemberRepository memberRepository;
 

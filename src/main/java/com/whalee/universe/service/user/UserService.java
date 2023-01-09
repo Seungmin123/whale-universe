@@ -1,9 +1,9 @@
-package com.whalee.universe.service.member;
+package com.whalee.universe.service.user;
 
 import com.whalee.universe.domain.member.Member;
-import com.whalee.universe.domain.member.dto.MemberFormDto;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface MemberService {
+public interface UserService extends UserDetailsService {
 
     Member saveMember(Member member) throws Exception;
 
