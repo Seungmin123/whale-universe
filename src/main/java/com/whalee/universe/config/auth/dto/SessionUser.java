@@ -1,6 +1,6 @@
 package com.whalee.universe.config.auth.dto;
 
-import com.whalee.universe.domain.user.Member;
+import com.whalee.universe.domain.member.Member;
 import lombok.Getter;
 
 import java.io.Serializable;

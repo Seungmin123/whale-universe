@@ -1,12 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Whale universe</title>
-</head>
-<body>
-<h1>
-    메인
-</h1>
+<html lang="ko"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:include="fragments/header"></th:block>
+<body class="bg-primary">
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                                <div class="card-body">
+                                    <form action="/api/member/login" method="post">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="username" name="username" type="text" placeholder="Name" />
+                                            <label for="username">Name</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="password" name="password" type="password" placeholder="Password" />
+                                            <label for="password">Password</label>
+                                        </div>
+                                        <div class="mt-4 mb-0">
+                                            <div class="d-grid"><input type="submit" class="btn btn-primary" id="loginBtn" value="Login" /></div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="card-footer text-center py-3">
+                                    <div class="small"><a href="/user/register">Go to Register</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
 </body>
+<script src="../js/login/login.js"></script>
+<th:block th:include="fragments/footer"></th:block>
 </html>

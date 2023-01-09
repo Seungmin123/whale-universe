@@ -1,6 +1,6 @@
 package com.whalee.universe.config.auth;
 
-import com.whalee.universe.service.user.MemberService;
+import com.whalee.universe.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,7 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final MemberService memberService;
+    private final UserService userService;
     private final AuthSuccessHandler authSuccessHandler;
     private final AuthFailureHandler authFailureHandler;
     private final CustomOAuth2UserService customOAuth2UserService;
@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(memberService).passwordEncoder(encryptPassword());
+        auth.userDetailsService(userService).passwordEncoder(encryptPassword());
     }
 
     @Override
@@ -54,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginPage("/")
                     .usernameParameter("username")
                     .passwordParameter("password")
-                    .loginProcessingUrl("/api/user/login/action") // 해당 url 요청이 오면 스프링 시큐리티가 처리
+                    .loginProcessingUrl("/api/user/login") // 해당 url 요청이 오면 스프링 시큐리티가 처리
                     .successHandler(authSuccessHandler)
                     .failureHandler(authFailureHandler)
                 .and()

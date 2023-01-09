@@ -1,0 +1,71 @@
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:form="http://www.w3.org/1999/xhtml">
+<th:block th:include="fragments/header"></th:block>
+<body class="bg-primary">
+<div id="layout">
+    <th:block th:include="fragments/sideBar"></th:block>
+    <div id="layoutDetail">
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">My Detail Info</h1></br>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Name</li>
+            </ol>
+            <div class="card mb-4">
+                <div class="card-body" >
+                    <p id ="name" v-model="detailInfo.name">{{detailInfo.name}}</p>
+                </div>
+            </div>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"></li>
+            </ol>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <p id ="nickName" v-model="detailInfo.nickName">{{detailInfo.nickName}}</p>
+                </div>
+            </div>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"></li>
+            </ol>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <p id ="password" v-model="detailInfo.password">{{detailInfo.password}}</p>
+                </div>
+            </div>
+        </div>
+        <th:block th:include="fragments/footer"></th:block>
+    </div>
+</div>
+<script th:inline="javascript">
+    function initialState() {
+        return {
+            detailInfo: {
+                memberUid: '',
+                name: '',
+                nickName: '',
+                password: ''
+            }
+        }
+    }
+
+    var app = new Vue({
+        el: '#layoutDetail'
+        , created: function() {
+            this.getDetailList()
+        }
+        , data: function(){
+            return initialState()
+        }
+        , methods: {
+            getDetailList: function() {
+                let getDetailState = await axios.get('/api/member/info', {params: memberUid})
+
+                app.detailInfo = getDetailState.data
+            }
+        }
+    })
+</script>
+</body>
+<th:block th:include="fragments/footer"></th:block>
+</html>
