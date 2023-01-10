@@ -1,56 +1,76 @@
 <html lang="ko"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:form="http://www.w3.org/1999/xhtml">
+      xmlns:th="http://www.thymeleaf.org">
 <th:block th:include="fragments/header"></th:block>
-<body class="bg-primary">
-<div id="layout">
+<body class="sb-nav-fixed">
+<th:block th:include="fragments/topBar"></th:block>
+<div id="layoutSidenav">
     <th:block th:include="fragments/sideBar"></th:block>
-    <div id="layoutDetail">
+    <div id="layoutSidenav_content">
         <div class="container-fluid px-4">
-            <h1 class="mt-4">My Detail Info</h1></br>
+            <h1 class="mt-4">My Detail Info</h1>
+            <div>
+                <button id="showChangeInfoBtn" @click="showChangeMemberInfoBtn">정보 변경하기</button>
+                <button id="changeInfoBtn" @click="changeMemberInfoBtn">제출</button>
+            </div>
+
+            </br>
+
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">Name</li>
             </ol>
             <div class="card mb-4">
                 <div class="card-body" >
-                    <p id ="name" v-model="detailInfo.name">{{detailInfo.name}}</p>
+                    <p id="name">{{detailInfo.name}}</p>
+                </div>
+                <div class="card-body" v-if="changeMemberInfo">
+                    <input type="text" id="changeName" v-model="changeInfo.changeName"/>
                 </div>
             </div>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"></li>
+                <li class="breadcrumb-item">NickName</li>
             </ol>
             <div class="card mb-4">
                 <div class="card-body">
-                    <p id ="nickName" v-model="detailInfo.nickName">{{detailInfo.nickName}}</p>
+                    <p id="nickName">{{detailInfo.nickName}}</p>
+                </div>
+                <div class="card-body" v-if="changeMemberInfo">
+                    <input type="text" id="changeNickName" v-model="changeInfo.changeNickName"/>
                 </div>
             </div>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"></li>
+                <li class="breadcrumb-item">Password</li>
             </ol>
             <div class="card mb-4">
                 <div class="card-body">
-                    <p id ="password" v-model="detailInfo.password">{{detailInfo.password}}</p>
+                    <p id="password">{{detailInfo.password}}</p>
+                </div>
+                <div class="card-body" v-if="changeMemberInfo">
+                    <input type="text" id="changePassword" v-model="changeInfo.changePassword"/>
                 </div>
             </div>
         </div>
-        <th:block th:include="fragments/footer"></th:block>
     </div>
 </div>
 <script th:inline="javascript">
     function initialState() {
         return {
             detailInfo: {
-                memberUid: '',
+                id: '',
                 name: '',
                 nickName: '',
                 password: ''
+            }, changeMemberInfo: false
+            , changeInfo: {
+                id: '',
+                changeName: '',
+                changeNickName: '',
+                changePassword: ''
             }
         }
     }
 
     var app = new Vue({
-        el: '#layoutDetail'
+        el: '#layoutSidenav_content'
         , created: function() {
             this.getDetailList()
         }
@@ -58,10 +78,17 @@
             return initialState()
         }
         , methods: {
-            getDetailList: function() {
-                let getDetailState = await axios.get('/api/member/info', {params: memberUid})
+            getDetailList: async function() {
+                let getDetailState = await axios.get('/api/member/myInfo')
 
                 app.detailInfo = getDetailState.data
+                app.changeInfo = app.detailInfo
+            }, showChangeMemberInfoBtn: function() {
+                app.changeMemberInfo = !app.changeMemberInfo
+            }, changeMemberInfoBtn: async function() {
+                let changeMemberInfoState = await axios.patch('/api/member/change', app.changeInfo)
+
+                window.alert(changeMemberInfoState.data)
             }
         }
     })

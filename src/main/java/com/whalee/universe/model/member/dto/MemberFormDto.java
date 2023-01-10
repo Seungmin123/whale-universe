@@ -1,4 +1,4 @@
-package com.whalee.universe.domain.member.dto;
+package com.whalee.universe.model.member.dto;
 
 import lombok.Builder;
 import lombok.Data;

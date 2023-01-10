@@ -2,8 +2,8 @@ package com.whalee.universe.controller;
 
 import com.whalee.universe.common.enums.urls.URLCode;
 import com.whalee.universe.common.exception.ExceptionCode;
-import com.whalee.universe.domain.member.Member;
-import com.whalee.universe.domain.member.dto.MemberFormDto;
+import com.whalee.universe.model.member.Member;
+import com.whalee.universe.model.member.dto.MemberFormDto;
 import com.whalee.universe.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,7 +24,7 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
-    public String registerMember(@RequestBody @Valid MemberFormDto memberFormDto, BindingResult bindingResult){
+    public String registerMember(@RequestBody @Valid MemberFormDto memberFormDto){
 
         try{
             Member member = Member.createMember(memberFormDto, passwordEncoder);

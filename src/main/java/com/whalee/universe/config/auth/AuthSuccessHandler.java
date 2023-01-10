@@ -1,7 +1,7 @@
 package com.whalee.universe.config.auth;
 
 import com.whalee.universe.common.enums.urls.URLCode;
-import com.whalee.universe.domain.member.MemberRepository;
+import com.whalee.universe.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;

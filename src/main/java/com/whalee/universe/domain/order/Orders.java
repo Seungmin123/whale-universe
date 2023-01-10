@@ -1,7 +1,7 @@
 package com.whalee.universe.domain.order;
 
-import com.whalee.universe.domain.BaseTimeEntity;
-import com.whalee.universe.domain.member.Member;
+import com.whalee.universe.model.common.BaseTimeEntity;
+import com.whalee.universe.model.member.Member;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package com.whalee.universe.domain;
+package com.whalee.universe.model.common;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

@@ -1,8 +1,8 @@
 package com.whalee.universe.service.user.impl;
 
 import com.whalee.universe.common.exception.ExceptionCode;
-import com.whalee.universe.domain.member.Member;
-import com.whalee.universe.domain.member.MemberRepository;
+import com.whalee.universe.model.member.Member;
+import com.whalee.universe.repository.member.MemberRepository;
 import com.whalee.universe.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +22,12 @@ public class UserServiceImpl implements UserService {
     public Member saveMember(Member member) throws Exception {
         this.validateDuplicateRegist(member);
         return memberRepository.save(member);
+    }
+
+    @Override
+    public Member updateMember(Member member) throws Exception {
+        this.validateDuplicateRegist(member);
+        return memberRepository.updateMember(member);
     }
 
     @Override

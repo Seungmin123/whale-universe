@@ -1,4 +1,4 @@
-package com.whalee.universe.domain.member;
+package com.whalee.universe.model.member;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
-package com.whalee.universe.domain.member;
+package com.whalee.universe.model.member;
 
-import com.whalee.universe.domain.BaseTimeEntity;
-import com.whalee.universe.domain.member.dto.MemberFormDto;
+import com.whalee.universe.model.common.BaseTimeEntity;
+import com.whalee.universe.model.member.dto.MemberFormDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

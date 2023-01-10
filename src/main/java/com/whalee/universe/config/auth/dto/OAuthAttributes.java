@@ -1,7 +1,7 @@
 package com.whalee.universe.config.auth.dto;
 
-import com.whalee.universe.domain.member.Member;
-import com.whalee.universe.domain.member.Role;
+import com.whalee.universe.model.member.Member;
+import com.whalee.universe.model.member.Role;
 import lombok.Builder;
 import lombok.Getter;
 

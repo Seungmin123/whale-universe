@@ -8,6 +8,8 @@ import java.util.Arrays;
 @Getter
 public enum ExceptionCode {
 
+    //server
+    SERVER_ERROR("m00000", "서버 에러가 발생했습니다."),
     //login
     MEMBER_NAME_DUPLICATION("m00001", "중복된 이름이 존재합니다."),
     MEMBER_NICKNAME_DUPLICATION("m00002", "중복된 닉네임이 존재합니다."),
