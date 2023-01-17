@@ -1,7 +1,11 @@
 package com.whalee.universe.service.user.impl;
 
+import com.whalee.universe.common.enums.log.MemberLogCode;
 import com.whalee.universe.common.exception.ExceptionCode;
 import com.whalee.universe.model.member.Member;
+import com.whalee.universe.model.member.MemberLog;
+import com.whalee.universe.model.member.dto.MemberChangeReq;
+import com.whalee.universe.repository.member.MemberLogRepository;
 import com.whalee.universe.repository.member.MemberRepository;
 import com.whalee.universe.service.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +13,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Transactional
@@ -17,6 +26,8 @@ import javax.transaction.Transactional;
 public class UserServiceImpl implements UserService {
 
     private final MemberRepository memberRepository;
+    private final MemberLogRepository memberLogRepository;
+    private final EntityManagerFactory entityManagerFactory;
 
     @Override
     public Member saveMember(Member member) throws Exception {
@@ -25,9 +36,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Member updateMember(Member member) throws Exception {
+    public void updateMember(Long id, Member member) throws Exception {
         this.validateDuplicateRegist(member);
-        return memberRepository.updateMember(member);
+
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+
+        entityTransaction.begin();
+
+        Member selectMember = entityManager.find(Member.class, id);
+        selectMember.updateChangeInfo(member);
+        selectMember.setModifiedDate(LocalDateTime.now());
+        memberLogRepository.save(
+                MemberLog.builder()
+                .member(selectMember)
+                .code(MemberLogCode.INFO_UPDATE.getCode())
+                .build());
+
+        entityManager.persist(selectMember);
+        entityManager.flush();
+        entityTransaction.commit();
     }
 
     @Override

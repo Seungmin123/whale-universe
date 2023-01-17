@@ -61,8 +61,13 @@ public class Member extends BaseTimeEntity implements UserDetails {
                 .password(passwordEncoder.encode(memberFormDto.getPassword()))
                 .role(Role.USER)
                 .build();
-
         return member;
+    }
+
+    public void updateChangeInfo(Member member){
+        this.name = member.getName();
+        this.nickName = member.getNickName();
+        this.password = member.getPassword();
     }
 
     @Override

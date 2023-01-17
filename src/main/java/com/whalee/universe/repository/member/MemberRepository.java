@@ -15,10 +15,4 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @Query("SELECT m FROM Member m WHERE m.nickName = :nickName")
     public Member findByNickName(@Param("nickName") String nickName);
 
-    @Query("UPDATE Member m " +
-            "SET m.name = :memberInfo.name" +
-            ", m.nickName = :memberInfo.nickName" +
-            ", m.password = :memberInfo.password " +
-            "WHERE id = :memberInfo.id")
-    public Member updateMember(@Param("memberInfo") Member member);
 }

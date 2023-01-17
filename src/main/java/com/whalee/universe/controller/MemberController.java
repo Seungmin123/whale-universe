@@ -1,8 +1,7 @@
 package com.whalee.universe.controller;
 
-import com.whalee.universe.common.enums.urls.URLCode;
-import com.whalee.universe.common.exception.ExceptionCode;
 import com.whalee.universe.model.member.Member;
+import com.whalee.universe.model.member.dto.MemberChangeReq;
 import com.whalee.universe.model.member.dto.MemberFormDto;
 import com.whalee.universe.service.member.MemberService;
 import com.whalee.universe.service.user.UserService;
@@ -10,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import sun.security.util.Password;
 
 import javax.validation.Valid;
 
@@ -46,17 +44,16 @@ public class MemberController {
     }
 
     @PatchMapping("/change")
-    public String changeMemberInfo(@RequestBody @Valid MemberFormDto memberFormDto){
+    public Member changeMemberInfo(@RequestBody @Valid MemberChangeReq memberChangeReq){
+        Member member = new Member();
         try{
-            Member member = Member.createMember(memberFormDto, passwordEncoder);
-            userService.updateMember(member);
-        }catch (IllegalStateException e){
-            return ExceptionCode.MEMBER_LOGIN_FAIL.getMessageByCode(e.getMessage());
+            member = Member.createMember(memberChangeReq, passwordEncoder);
+            userService.updateMember(memberChangeReq.getId(), member);
         }catch (Exception e){
-            return ExceptionCode.MEMBER_LOGIN_FAIL.getMessageByCode(e.getMessage());
+            return new Member();
         }
 
-        return "success";
+        return member;
     }
 
 }

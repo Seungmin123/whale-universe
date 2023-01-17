@@ -9,8 +9,8 @@
         <div class="container-fluid px-4">
             <h1 class="mt-4">My Detail Info</h1>
             <div>
-                <button id="showChangeInfoBtn" @click="showChangeMemberInfoBtn">정보 변경하기</button>
-                <button id="changeInfoBtn" @click="changeMemberInfoBtn">제출</button>
+                <button id="showChangeInfoBtn" class="btn btn-info btn-icon-split" @click="showChangeMemberInfoBtn">정보 변경하기</button>
+                <button id="changeInfoBtn" class="btn btn-light btn-icon-split" @click="changeMemberInfoBtn">제출</button>
             </div>
 
             </br>
@@ -82,12 +82,20 @@
                 let getDetailState = await axios.get('/api/member/myInfo')
 
                 app.detailInfo = getDetailState.data
-                app.changeInfo = app.detailInfo
             }, showChangeMemberInfoBtn: function() {
                 app.changeMemberInfo = !app.changeMemberInfo
             }, changeMemberInfoBtn: async function() {
-                let changeMemberInfoState = await axios.patch('/api/member/change', app.changeInfo)
+                let changeInfo = app.changeInfo
+                const memberInfoChangeReq = {
+                    id: app.detailInfo.id,
+                    name: changeInfo.changeName,
+                    nickName: changeInfo.changeNickName,
+                    password: changeInfo.changePassword
+                }
 
+                let changeMemberInfoState = await axios.patch('/api/member/change', memberInfoChangeReq)
+
+                console.log(changeMemberInfoState)
                 window.alert(changeMemberInfoState.data)
             }
         }
