@@ -44,15 +44,10 @@ public class MemberController {
     }
 
     @PatchMapping("/change")
-    public Member changeMemberInfo(@RequestBody @Valid MemberChangeReq memberChangeReq){
+    public Member changeMemberInfo(@RequestBody @Valid MemberChangeReq memberChangeReq) throws Exception{
         Member member = new Member();
-        try{
-            member = Member.createMember(memberChangeReq, passwordEncoder);
-            userService.updateMember(memberChangeReq.getId(), member);
-        }catch (Exception e){
-            return new Member();
-        }
-
+        member = Member.createMember(memberChangeReq, passwordEncoder);
+        userService.updateMember(memberChangeReq.getId(), member);
         return member;
     }
 

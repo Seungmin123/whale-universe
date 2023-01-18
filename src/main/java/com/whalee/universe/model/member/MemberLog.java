@@ -10,20 +10,25 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name = "memberLog")
 @Entity
-public class MemberLog extends Member{
+public class MemberLog{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberLogId;
 
+    @Column(nullable = false)
     private String memberLogCode;
 
+    @Column(nullable = false)
     private Long memberId;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private String nickName;
 
+    @Column(nullable = false)
     private String password;
 
     @Builder

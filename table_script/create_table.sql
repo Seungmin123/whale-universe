@@ -37,7 +37,7 @@ create table member (
 	tell varchar(255),
 	role varchar(255) not null,
 	primary key (member_id)
-) engine=InnoDB
+) engine=InnoDB;
 
 create table orders (
 	id bigint not null auto_increment,
@@ -47,28 +47,38 @@ create table orders (
 	order_num varchar(12) not null,
 	member_id bigint,
 	primary key (id)
-) engine=InnoDB
+) engine=InnoDB;
 
-alter table orders add constraint FKmgorkx4kfna7pnnqgkqikb6ed foreign key (member_id) references member (member_id)
+alter table orders add constraint FKmgorkx4kfna7pnnqgkqikb6ed foreign key (member_id) references member (member_id);
 
 alter table orders character set = utf8mb4, collate = utf8mb4_unicode_ci;
 
-insert into member (name, nick_name, password, email, tell, role) values ('test1', 'test1', 'test1', 'test1@naver.com', '01011111111', 'ADMIN');
-insert into member (name, nick_name, password, email, tell, role) values ('test2', 'test2', 'test2', 'test2@naver.com', '01011111111', 'USER');
-insert into member (name, nick_name, password, email, tell, role) values ('test3', 'test3', 'test3', 'test3@naver.com', '01011111111', 'USER');
+--insert into member (name, nick_name, password, email, tell, role) values ('test1', 'test1', 'test1', 'test1@naver.com', '01011111111', 'ADMIN');
+--insert into member (name, nick_name, password, email, tell, role) values ('test2', 'test2', 'test2', 'test2@naver.com', '01011111111', 'USER');
+--insert into member (name, nick_name, password, email, tell, role) values ('test3', 'test3', 'test3', 'test3@naver.com', '01011111111', 'USER');
+--
+--insert into orders (item_name, order_num, member_id, created_date) values ('item1', '111111111ABC', (select member_id from member where name = 'test1'), '2022-08-08 10:07:20.357');
+--insert into orders (item_name, order_num, member_id, created_date) values ('item2', '222222222ABC', (select member_id from member where name = 'test1'), '2022-08-09 10:07:20.357');
+--insert into orders (item_name, order_num, member_id, created_date) values ('item3', '333333333ABC', (select member_id from member where name = 'test1'), '2022-08-10 10:07:20.357');
+--insert into orders (item_name, order_num, member_id, created_date) values ('item4', '444444444ABC', (select member_id from member where name = 'test1'), '2022-08-11 10:07:20.357');
+--
+--insert into orders (item_name, order_num, member_id, created_date) values ('item5', '555555555ABC', (select member_id from member where name = 'test2'), '2022-08-12 10:07:20.357');
+--insert into orders (item_name, order_num, member_id, created_date) values ('item6', '666666666ABC', (select member_id from member where name = 'test2'), '2022-08-13 10:07:20.357');
+--insert into orders (item_name, order_num, member_id, created_date) values ('item7', '777777777ABC', (select member_id from member where name = 'test2'), '2022-08-14 10:07:20.357');
+--insert into orders (item_name, order_num, member_id, created_date) values ('item8', '888888888ABC', (select member_id from member where name = 'test2'), '2022-08-15 10:07:20.357');
+--
+--insert into orders (item_name, order_num, member_id, created_date) values ('item9', '999999999ABC', (select member_id from member where name = 'test3'), '2022-08-16 10:07:20.357');
+--insert into orders (item_name, order_num, member_id, created_date) values ('item10', '112211221ABC', (select member_id from member where name = 'test3'), '2022-08-17 10:07:20.357');
+--insert into orders (item_name, order_num, member_id, created_date) values ('item11', '343434343ABC', (select member_id from member where name = 'test3'), '2022-08-18 10:07:20.357');
+--insert into orders (item_name, order_num, member_id, created_date) values ('item12', '565656565ABC', (select member_id from member where name = 'test3'), '2022-08-19 10:07:20.357');
 
-insert into orders (item_name, order_num, member_id, created_date) values ('item1', '111111111ABC', (select member_id from member where name = 'test1'), '2022-08-08 10:07:20.357');
-insert into orders (item_name, order_num, member_id, created_date) values ('item2', '222222222ABC', (select member_id from member where name = 'test1'), '2022-08-09 10:07:20.357');
-insert into orders (item_name, order_num, member_id, created_date) values ('item3', '333333333ABC', (select member_id from member where name = 'test1'), '2022-08-10 10:07:20.357');
-insert into orders (item_name, order_num, member_id, created_date) values ('item4', '444444444ABC', (select member_id from member where name = 'test1'), '2022-08-11 10:07:20.357');
-
-insert into orders (item_name, order_num, member_id, created_date) values ('item5', '555555555ABC', (select member_id from member where name = 'test2'), '2022-08-12 10:07:20.357');
-insert into orders (item_name, order_num, member_id, created_date) values ('item6', '666666666ABC', (select member_id from member where name = 'test2'), '2022-08-13 10:07:20.357');
-insert into orders (item_name, order_num, member_id, created_date) values ('item7', '777777777ABC', (select member_id from member where name = 'test2'), '2022-08-14 10:07:20.357');
-insert into orders (item_name, order_num, member_id, created_date) values ('item8', '888888888ABC', (select member_id from member where name = 'test2'), '2022-08-15 10:07:20.357');
-
-insert into orders (item_name, order_num, member_id, created_date) values ('item9', '999999999ABC', (select member_id from member where name = 'test3'), '2022-08-16 10:07:20.357');
-insert into orders (item_name, order_num, member_id, created_date) values ('item10', '112211221ABC', (select member_id from member where name = 'test3'), '2022-08-17 10:07:20.357');
-insert into orders (item_name, order_num, member_id, created_date) values ('item11', '343434343ABC', (select member_id from member where name = 'test3'), '2022-08-18 10:07:20.357');
-insert into orders (item_name, order_num, member_id, created_date) values ('item12', '565656565ABC', (select member_id from member where name = 'test3'), '2022-08-19 10:07:20.357');
-
+drop table if exists member_log;
+create table member_log (
+    member_log_id bigint not null auto_increment
+    , member_id bigint not null
+    , member_log_code varchar(255) not null
+    , name varchar(255) not null
+    , nick_name varchar(255) not null
+    , password varchar(255) not null
+    , primary key (member_log_id)
+) engine=InnoDB;
