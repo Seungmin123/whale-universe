@@ -1,10 +1,9 @@
 package com.whalee.universe.service.user.impl;
 
+import com.whalee.universe.common.enums.exceptions.CommonExceptionCode;
 import com.whalee.universe.common.enums.log.MemberLogCode;
-import com.whalee.universe.common.exception.ExceptionCode;
 import com.whalee.universe.model.member.Member;
 import com.whalee.universe.model.member.MemberLog;
-import com.whalee.universe.model.member.dto.MemberChangeReq;
 import com.whalee.universe.repository.member.MemberLogRepository;
 import com.whalee.universe.repository.member.MemberRepository;
 import com.whalee.universe.service.user.UserService;
@@ -18,7 +17,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Transactional
@@ -62,21 +60,21 @@ public class UserServiceImpl implements UserService {
     public void validateDuplicateRegist(Member member) throws IllegalArgumentException {
         Member findMemberByName = memberRepository.findByName(member.getName());
         if(findMemberByName != null){
-            throw new IllegalArgumentException(ExceptionCode.MEMBER_NAME_DUPLICATION.getCode());
+            throw new IllegalArgumentException(CommonExceptionCode.MEMBER_NAME_DUPLICATION.getMessage());
         }
 
         Member findMemberByNickName = memberRepository.findByNickName(member.getNickName());
         if(findMemberByNickName != null){
-            throw new IllegalArgumentException(ExceptionCode.MEMBER_NICKNAME_DUPLICATION.getCode());
+            throw new IllegalArgumentException(CommonExceptionCode.MEMBER_NICKNAME_DUPLICATION.getMessage());
         }
 
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws IllegalArgumentException {
         Member member = memberRepository.findByName(username);
 
-        if(member == null) throw new IllegalArgumentException(ExceptionCode.MEMBER_NOT_FOUND.getCode());
+        if(member == null) throw new IllegalArgumentException(CommonExceptionCode.MEMBER_NOT_FOUND.getMessage());
 
         return member;
     }

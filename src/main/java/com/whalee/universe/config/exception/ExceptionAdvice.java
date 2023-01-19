@@ -5,18 +5,13 @@ import com.whalee.universe.common.enums.exceptions.ErrorCode;
 import com.whalee.universe.common.enums.exceptions.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @RestControllerAdvice
 @Slf4j
-public class WhaleExceptionHandler extends ResponseEntityExceptionHandler {
+public class ExceptionAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Throwable.class)
     public ResponseEntity<Object> exceptAll(Exception ex){
@@ -29,6 +24,13 @@ public class WhaleExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleIllegalArgument(IllegalArgumentException e) {
         logger.warn("handleIllegalArgument ::: ", e);
         ErrorCode errorCode = CommonExceptionCode.VALID_FAIL;
+        return handleExceptionInternal(errorCode, e.getMessage());
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> handleIllegalArgument(Exception e) {
+        logger.warn("handleIllegalArgument ::: ", e);
+        ErrorCode errorCode = CommonExceptionCode.SERVER_ERROR;
         return handleExceptionInternal(errorCode, e.getMessage());
     }
 
