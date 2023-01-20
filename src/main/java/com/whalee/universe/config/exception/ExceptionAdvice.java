@@ -22,14 +22,14 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Object> handleIllegalArgument(IllegalArgumentException e) {
-        logger.warn("handleIllegalArgument ::: ", e);
+        logger.warn("handleIllegalArgument :: ", e);
         ErrorCode errorCode = CommonExceptionCode.VALID_FAIL;
         return handleExceptionInternal(errorCode, e.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleIllegalArgument(Exception e) {
-        logger.warn("handleIllegalArgument ::: ", e);
+        logger.warn("handleIllegalArgument :: ", e);
         ErrorCode errorCode = CommonExceptionCode.SERVER_ERROR;
         return handleExceptionInternal(errorCode, e.getMessage());
     }
