@@ -74,6 +74,7 @@ public class UserServiceImpl implements UserService {
     public UserDetails loadUserByUsername(String username) throws IllegalArgumentException {
         Member member = memberRepository.findByName(username);
 
+        //
         if(member == null) throw new IllegalArgumentException(CommonExceptionCode.MEMBER_NOT_FOUND.getMessage());
 
         return member;
