@@ -23,13 +23,9 @@ public class MemberController {
 
     private final PasswordEncoder passwordEncoder;
 
-    @GetMapping("/myInfo")
-    public Member getMyInfo(@AuthenticationPrincipal Member member) throws Exception {
-        return member;
-    }
-
     @GetMapping("/memberInfo/{id}")
-    public Member getMemberById(@PathVariable Long id) throws Exception {
+    public Member getMemberById(@PathVariable Long id, @AuthenticationPrincipal Member member) throws Exception {
+        if(id == 0l) id = member.getId();
         return memberService.getMemberById(id);
     }
 

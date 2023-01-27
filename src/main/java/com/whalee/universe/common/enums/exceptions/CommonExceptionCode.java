@@ -30,10 +30,10 @@ public enum CommonExceptionCode implements ErrorCode {
         this.message = message;
     }
 
-    public String getMessageByCode(String code){
+    public static CommonExceptionCode getExceptionCodeByMessage(String message){
         return Arrays.stream(CommonExceptionCode.values())
-                .filter(c -> code.equals(c.message))
-                .map(CommonExceptionCode::getMessage).findFirst().toString();
+                .filter(c -> message.equals(c.message))
+                .findFirst().get();
     }
 
     @Override

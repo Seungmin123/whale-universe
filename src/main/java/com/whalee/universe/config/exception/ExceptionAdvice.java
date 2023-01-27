@@ -3,6 +3,7 @@ package com.whalee.universe.config.exception;
 import com.whalee.universe.common.enums.exceptions.CommonExceptionCode;
 import com.whalee.universe.common.enums.exceptions.ErrorCode;
 import com.whalee.universe.common.enums.exceptions.ErrorResponse;
+import com.whalee.universe.common.response.CommonResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,54 +15,27 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class ExceptionAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Throwable.class)
-    public ResponseEntity<Object> exceptAll(Exception ex){
-        logger.warn("throwableException ::: ", ex);
-        ErrorCode errorCode = CommonExceptionCode.SERVER_ERROR;
-        return handleExceptionInternal(errorCode, ex.getMessage());
+    public CommonResponse<Object> exceptAll(Exception e){
+        logger.warn("throwableException ::: ", e);
+        ErrorCode errorCode = CommonExceptionCode.getExceptionCodeByMessage(e.getMessage());
+        return handleExceptionInternal(errorCode);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<Object> handleIllegalArgument(IllegalArgumentException e) {
+    public CommonResponse<Object> handleIllegalArgument(IllegalArgumentException e) {
         logger.warn("handleIllegalArgument :: ", e);
-        ErrorCode errorCode = CommonExceptionCode.VALID_FAIL;
-        return handleExceptionInternal(errorCode, e.getMessage());
+        ErrorCode errorCode = CommonExceptionCode.getExceptionCodeByMessage(e.getMessage());
+        return handleExceptionInternal(errorCode);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<Object> handleIllegalArgument(Exception e) {
+    public CommonResponse<Object> handleIllegalArgument(Exception e) {
         logger.warn("handleIllegalArgument :: ", e);
-        ErrorCode errorCode = CommonExceptionCode.SERVER_ERROR;
-        return handleExceptionInternal(errorCode, e.getMessage());
+        ErrorCode errorCode = CommonExceptionCode.getExceptionCodeByMessage(e.getMessage());
+        return handleExceptionInternal(errorCode);
     }
 
-    private ResponseEntity<Object> handleExceptionInternal(ErrorCode errorCode, String message) {
-        return ResponseEntity.status(errorCode.getHttpStatus())
-                .body(makeErrorResponse(errorCode, message));
+    private CommonResponse<Object> handleExceptionInternal(ErrorCode errorCode) {
+        return CommonResponse.builder().code(errorCode.getHttpStatus().toString()).message(errorCode.getMessage()).build();
     }
-
-    private ErrorResponse makeErrorResponse(ErrorCode errorCode, String message) {
-        return ErrorResponse.builder()
-                .code(errorCode.name())
-                .message(message)
-                .build();
-    }
-
-//    private ResponseEntity<Object> handleExceptionInternal(BindException e, ErrorCode errorCode) {
-//        return ResponseEntity.status(errorCode.getHttpStatus())
-//                .body(makeErrorResponse(e, errorCode));
-//    }
-//
-//    private ErrorResponse makeErrorResponse(BindException e, ErrorCode errorCode) {
-//        List<ErrorResponse.ValidationError> validationErrorList = e.getBindingResult()
-//                .getFieldErrors()
-//                .stream()
-//                .map(ErrorResponse.ValidationError::of)
-//                .collect(Collectors.toList());
-//
-//        return ErrorResponse.builder()
-//                .code(errorCode.name())
-//                .message(errorCode.getMessage())
-//                .errors(validationErrorList)
-//                .build();
-//    }
 }

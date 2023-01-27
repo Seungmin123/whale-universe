@@ -72,14 +72,15 @@
     var app = new Vue({
         el: '#layoutSidenav_content'
         , created: function() {
-            this.getDetailList()
+            this.getDetailList(0)
         }
         , data: function(){
             return initialState()
         }
         , methods: {
-            getDetailList: async function() {
-                let getDetailState = await axios.get('/api/member/myInfo')
+            getDetailList: async function(memberUid) {
+                const reqId = (memberUid) ? memberUid : this.detailInfo.id
+                let getDetailState = await axios.get('/api/member/memberInfo/'+reqId)
 
                 app.detailInfo = getDetailState.data
             }, showChangeMemberInfoBtn: function() {
@@ -95,11 +96,11 @@
 
                 let changeMemberInfoState = await axios.patch('/api/member/change', memberInfoChangeReq)
 
-                if(changeMemberInfoState.status === 200){
+                if(changeMemberInfoState.status === 200 && !changeMemberInfoState.data.message){
                     window.alert("회원정보가 정상적으로 변경되었습니다.")
                     app.getDetailList()
                 }else{
-                    window.alert("에러가 발생했습니다. ErrorCdoe : " + changeMemberInfoState.status)
+                    window.alert("에러가 발생했습니다. ErrorCode : " + changeMemberInfoState.data.message)
                 }
             }
         }
