@@ -27,7 +27,6 @@ public class MemberController {
     public Member getMemberById(@PathVariable Long id, @AuthenticationPrincipal Member member) throws Exception {
         if(id == 0l) id = member.getId();
         return memberService.getMemberById(id);
-        //
     }
 
     @GetMapping("/memberInfo/name")
